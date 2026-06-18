@@ -1,2 +1,1 @@
-
-# Tool tests — will be implemented in Phase 3
+# Tool tests

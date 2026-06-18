@@ -20,12 +20,12 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
 # --- Model Settings ---
-LLM_MODEL_ID = "meta-llama/llama-3.3-70b-instruct:free"
+LLM_MODEL_ID = "google/gemma-4-31b-it:free"
 EMBEDDING_MODEL_ID = "all-MiniLM-L6-v2"
 
 # --- RAG Settings ---
-CHUNK_SIZE = 500       # tokens per chunk
-CHUNK_OVERLAP = 50     # overlap between chunks
+CHUNK_SIZE = 1000      # characters per chunk (~150-200 words, fits in 256 token embedding window)
+CHUNK_OVERLAP = 200    # character overlap between chunks (20% of chunk size)
 TOP_K_RESULTS = 5      # number of chunks to retrieve
 
 # --- Validation ---
