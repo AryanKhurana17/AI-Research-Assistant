@@ -1,0 +1,23 @@
+# Core Framework
+agno>=1.0.0
+
+# LLM Provider
+openai>=1.0.0                    # OpenRouter uses OpenAI-compatible API
+
+# Knowledge Base & RAG
+pypdf>=4.0.0                     # PDF reader
+sentence-transformers>=3.0.0     # Local embeddings (free, no API key needed)
+duckdb>=0.10.0                   # Vector store (DuckDB as per assessment)
+
+# Tools
+tavily-python>=0.3.0             # Web search
+sympy>=1.12                      # Calculator (symbolic math)
+
+# AgentOS & UI
+fastapi>=0.100.0                 # AgentOS runtime
+uvicorn>=0.20.0                  # ASGI server
+sqlalchemy>=2.0.0                # Session storage
+
+# Utilities
+python-dotenv>=1.0.0             # Environment variable loading
+rich>=13.0.0                     # Pretty console output (for CLI testing)
