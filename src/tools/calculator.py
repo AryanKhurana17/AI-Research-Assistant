@@ -4,15 +4,16 @@ Calculator Tool for the AI Research Assistant.
 Provides safe mathematical evaluation using sympy.
 Supports arithmetic, algebra, scientific functions, and unit conversions.
 
-Design Decision: sympy.sympify() is used instead of eval() to prevent
-arbitrary code execution. This is a critical security consideration --
-eval() would allow injection attacks in a production system.
 """
 import json
 from typing import Dict, Any
 
 import sympy
 from agno.tools import Toolkit
+
+from src.logging_config import get_logger
+
+logger = get_logger("tools.calculator")
 
 
 class CalculatorTools(Toolkit):
@@ -61,6 +62,7 @@ class CalculatorTools(Toolkit):
         Returns:
             JSON string with the result or error message.
         """
+        logger.info("calculate() called with: %s", expression)
         try:
             # Parse and evaluate using sympy (safe -- no arbitrary code execution)
             result = sympy.sympify(expression)
@@ -70,6 +72,7 @@ class CalculatorTools(Toolkit):
             if evaluated == int(evaluated):
                 evaluated = int(evaluated)
 
+            logger.info("calculate() result: %s = %s", expression, evaluated)
             return json.dumps({
                 "expression": expression,
                 "result": evaluated,
@@ -77,6 +80,7 @@ class CalculatorTools(Toolkit):
                 "status": "success",
             })
         except Exception as e:
+            logger.error("calculate() failed for '%s': %s", expression, e)
             return json.dumps({
                 "expression": expression,
                 "error": str(e),
@@ -95,10 +99,12 @@ class CalculatorTools(Toolkit):
         Returns:
             JSON string with the conversion result.
         """
+        logger.info("unit_convert() called: %s %s -> %s", value, from_unit, to_unit)
         key = (from_unit.lower(), to_unit.lower())
 
         if key in self.CONVERSIONS:
             converted = self.CONVERSIONS[key](value)
+            logger.info("unit_convert() result: %s %s = %s %s", value, from_unit, round(converted, 4), to_unit)
             return json.dumps({
                 "value": value,
                 "from_unit": from_unit,
@@ -107,6 +113,7 @@ class CalculatorTools(Toolkit):
                 "status": "success",
             })
 
+        logger.warning("unit_convert() unsupported: %s -> %s", from_unit, to_unit)
         supported_units = sorted(set(u for pair in self.CONVERSIONS for u in pair))
         return json.dumps({
             "error": f"Unsupported conversion: {from_unit} -> {to_unit}",

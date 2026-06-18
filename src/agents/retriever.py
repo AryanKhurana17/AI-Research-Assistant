@@ -8,9 +8,11 @@ This agent:
 """
 from agno.agent import Agent
 from agno.models.openrouter import OpenRouter
+# from agno.models.google import Gemini
 
 from src.config import LLM_MODEL_ID, OPENROUTER_API_KEY
-from src.knowledge.pdf_knowledge import KnowledgeBase
+# from src.config import GEMINI_MODEL_ID, GEMINI_API_KEY
+from src.knowledge.pdf_knowledge import KnowledgeBase, get_knowledge_base
 
 
 class RetrieverAgent:
@@ -27,7 +29,7 @@ class RetrieverAgent:
     """
 
     def __init__(self, knowledge_base: KnowledgeBase = None):
-        self._kb = knowledge_base or KnowledgeBase()
+        self._kb = knowledge_base or get_knowledge_base()
         self.agent = self._build_agent()
 
     def knowledge_search(self, query: str) -> str:
@@ -50,6 +52,7 @@ class RetrieverAgent:
             name="Retriever Agent",
             role="ML Knowledge Specialist",
             model=OpenRouter(id=LLM_MODEL_ID, api_key=OPENROUTER_API_KEY),
+            # model=Gemini(id=GEMINI_MODEL_ID, api_key=GEMINI_API_KEY),
             tools=[self.knowledge_search],
             instructions=[
                 "You are a Machine Learning knowledge specialist.",

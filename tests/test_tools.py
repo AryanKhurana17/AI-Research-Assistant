@@ -107,15 +107,15 @@ class TestWebSearchTools:
         self.search = WebSearchTools()
 
     def test_mock_search_matching_query(self):
-        result = json.loads(self.search.search_web("What is machine learning?"))
+        result = json.loads(self.search.search_web("What is the standard Iris dataset?"))
         assert result["status"] == "success"
         assert len(result["results"]) > 0
-        assert "machine learning" in result["results"][0]["title"].lower()
+        assert "iris" in result["results"][0]["title"].lower()
 
-    def test_mock_search_python_query(self):
-        result = json.loads(self.search.search_web("Tell me about Python"))
+    def test_mock_search_nvidia_query(self):
+        result = json.loads(self.search.search_web("Tell me about NVIDIA Corp"))
         assert result["status"] == "success"
-        assert "python" in result["answer"].lower()
+        assert "nvidia" in result["answer"].lower()
 
     def test_mock_search_unmatched_query(self):
         result = json.loads(self.search.search_web("quantum computing breakthroughs"))

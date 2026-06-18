@@ -10,8 +10,10 @@ This agent:
 """
 from agno.agent import Agent
 from agno.models.openrouter import OpenRouter
+# from agno.models.google import Gemini
 
 from src.config import LLM_MODEL_ID, OPENROUTER_API_KEY
+# from src.config import GEMINI_MODEL_ID, GEMINI_API_KEY
 from src.tools.calculator import CalculatorTools
 from src.tools.web_search import WebSearchTools
 
@@ -44,6 +46,7 @@ class GeneralAgent:
             name="General Agent",
             role="General Reasoning and Tool Use Specialist",
             model=OpenRouter(id=LLM_MODEL_ID, api_key=OPENROUTER_API_KEY),
+            # model=Gemini(id=GEMINI_MODEL_ID, api_key=GEMINI_API_KEY),
             tools=[self._calculator, self._web_search],
             instructions=[
                 "You are a general-purpose reasoning assistant with access to tools.",

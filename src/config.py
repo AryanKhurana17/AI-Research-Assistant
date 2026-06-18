@@ -16,11 +16,14 @@ DUCKDB_PATH = DATA_DIR / "vectors.duckdb"
 PDF_PATH = PROJECT_ROOT / "intro-to-ml.pdf"
 
 # --- API Keys ---
+
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  #
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
 # --- Model Settings ---
 LLM_MODEL_ID = "google/gemma-4-31b-it:free"
+GEMINI_MODEL_ID = "gemini-3.1-flash-lite"    #
 EMBEDDING_MODEL_ID = "all-MiniLM-L6-v2"
 
 # --- RAG Settings ---
@@ -32,8 +35,9 @@ TOP_K_RESULTS = 5      # number of chunks to retrieve
 def validate_config():
     """Validate that all required configuration is present."""
     errors = []
-    if not OPENROUTER_API_KEY:
-        errors.append("OPENROUTER_API_KEY not set in .env")
+
+    if not OPENROUTER_API_KEY and not GEMINI_API_KEY:
+        errors.append("Neither OPENROUTER_API_KEY nor GEMINI_API_KEY set in .env")
     if not PDF_PATH.exists():
         errors.append(f"PDF not found at {PDF_PATH}")
     if errors:

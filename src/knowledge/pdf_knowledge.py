@@ -22,6 +22,9 @@ from src.config import (
     PDF_PATH, DUCKDB_PATH, DATA_DIR,
     EMBEDDING_MODEL_ID, CHUNK_SIZE, CHUNK_OVERLAP, TOP_K_RESULTS,
 )
+from src.logging_config import get_logger
+
+logger = get_logger("knowledge")
 
 
 class DuckDBVectorStore:
@@ -231,24 +234,26 @@ class KnowledgeBase:
             Total number of chunks indexed.
         """
         # Step 1: Read and chunk
-        print(f"[1/4] Reading PDF from {self.document_processor.pdf_path} ...")
+        logger.info("Reading PDF from %s", self.document_processor.pdf_path)
         chunks = self.document_processor.process()
-        print(f"       Created {len(chunks)} chunks "
-              f"(size={self.document_processor.chunk_size}, "
-              f"overlap={self.document_processor.chunk_overlap}).")
+        logger.info(
+            "Created %d chunks (size=%d, overlap=%d)",
+            len(chunks), self.document_processor.chunk_size,
+            self.document_processor.chunk_overlap,
+        )
 
         # Step 2: Embed
-        print("[2/4] Generating embeddings ...")
+        logger.info("Generating embeddings...")
         texts = [c["content"] for c in chunks]
         embeddings = self.embedder.encode(texts, show_progress_bar=True)
 
         # Step 3: Store
-        print("[3/4] Storing in DuckDB ...")
+        logger.info("Storing in DuckDB...")
         if recreate:
             self.vector_store.clear()
         count = self.vector_store.insert_batch(chunks, embeddings)
 
-        print(f"[OK] Indexed {count} chunks into {self.vector_store.db_path}")
+        logger.info("Indexed %d chunks into %s", count, self.vector_store.db_path)
         return count
 
     def search(self, query: str, top_k: int = TOP_K_RESULTS) -> List[Dict[str, Any]]:
@@ -261,8 +266,17 @@ class KnowledgeBase:
         Returns:
             List of result dicts with keys: content, page_num, source, score.
         """
+        logger.info("search() called with query: '%s' (top_k=%d)", query, top_k)
         query_embedding = self.embedder.encode(query).tolist()
-        return self.vector_store.search(query_embedding, top_k)
+        results = self.vector_store.search(query_embedding, top_k)
+        if results:
+            logger.info(
+                "search() returned %d results (top score: %.4f, lowest: %.4f)",
+                len(results), results[0]["score"], results[-1]["score"],
+            )
+        else:
+            logger.warning("search() returned no results for: '%s'", query)
+        return results
 
     @staticmethod
     def format_results(results: List[Dict[str, Any]]) -> str:
@@ -277,3 +291,20 @@ class KnowledgeBase:
                 f"{r['content']}"
             )
         return "\n\n".join(sections)
+
+
+# Global cache for the knowledge base
+_cached_kb = None
+
+
+def get_knowledge_base() -> KnowledgeBase:
+    """Get or create the singleton KnowledgeBase instance.
+    
+    This implements lazy loading so the vector store and embedding models
+    are only initialized once per application lifecycle, improving performance.
+    """
+    global _cached_kb
+    if _cached_kb is None:
+        logger.info("Initializing global KnowledgeBase instance (lazy load)")
+        _cached_kb = KnowledgeBase()
+    return _cached_kb

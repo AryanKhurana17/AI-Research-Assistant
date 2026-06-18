@@ -4,15 +4,16 @@ Web Search Tool for the AI Research Assistant.
 Primary: Tavily Search API (optimized for AI agents).
 Fallback: Mock search results when Tavily is unavailable.
 
-Design Decision: Graceful degradation pattern -- external APIs can fail
-(rate limits, network issues, key expiry). The mock fallback ensures the
-system remains functional and demonstrable regardless of API availability.
 """
 import json
 import os
 from typing import List, Dict, Any, Optional
 
 from agno.tools import Toolkit
+
+from src.logging_config import get_logger
+
+logger = get_logger("tools.web_search")
 
 
 class WebSearchTools(Toolkit):
@@ -33,54 +34,67 @@ class WebSearchTools(Toolkit):
 
     # Curated mock responses for common AI/ML queries
     _MOCK_DB: Dict[str, Dict[str, Any]] = {
-        "machine learning": {
-            "answer": "Machine learning is a subset of AI that enables systems to learn from data.",
+        "iris": {
+            "answer": "The standard Iris dataset contains 4 features: sepal length, sepal width, petal length, and petal width.",
             "results": [
                 {
-                    "title": "Machine Learning - Wikipedia",
-                    "url": "https://en.wikipedia.org/wiki/Machine_learning",
+                    "title": "Iris flower data set - Wikipedia",
+                    "url": "https://en.wikipedia.org/wiki/Iris_flower_data_set",
                     "content": (
-                        "Machine learning (ML) is a field of study in artificial intelligence "
-                        "concerned with the development of algorithms that learn from data."
+                        "The Iris dataset is a multivariate data set introduced by Ronald Fisher in 1936. "
+                        "It consists of 50 samples from each of three species of Iris. Four features were "
+                        "measured from each sample: the length and the width of the sepals and petals, in centimeters."
                     ),
                 },
             ],
         },
-        "deep learning": {
-            "answer": "Deep learning is a subset of machine learning using neural networks with many layers.",
+        "large language model": {
+            "answer": "Recent developments in LLMs include massive context windows (up to 2M tokens), multimodal native processing, advanced reasoning via reinforcement learning, and high-performance open-weight models like Llama 3.3.",
             "results": [
                 {
-                    "title": "Deep Learning - Wikipedia",
-                    "url": "https://en.wikipedia.org/wiki/Deep_learning",
+                    "title": "Latest Trends in LLMs - TechCrunch",
+                    "url": "https://techcrunch.com/latest-trends-llms",
                     "content": (
-                        "Deep learning is part of a broader family of machine learning methods "
-                        "based on artificial neural networks with representation learning."
+                        "The LLM landscape has shifted towards reasoning-oriented architectures, native multimodality, "
+                        "and highly efficient small models that can run on edge devices."
                     ),
                 },
             ],
         },
-        "python": {
-            "answer": "Python is a high-level, general-purpose programming language widely used in data science and AI.",
+        "nvidia": {
+            "answer": "NVIDIA Corporation (NVDA) is trading around $135 USD, driven by high demand for its Hopper and Blackwell AI GPUs.",
             "results": [
                 {
-                    "title": "Python (programming language) - Wikipedia",
-                    "url": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+                    "title": "NVIDIA (NVDA) Stock Price & News - Google Finance",
+                    "url": "https://www.google.com/finance/quote/NVDA:NASDAQ",
                     "content": (
-                        "Python is a high-level, general-purpose programming language. "
-                        "Its design philosophy emphasizes code readability."
+                        "Get the latest NVIDIA Corp (NVDA) real-time stock quote, historical performance, charts, "
+                        "financial news, and analysis."
                     ),
                 },
             ],
         },
-        "transformer": {
-            "answer": "Transformers are a deep learning architecture based on the self-attention mechanism.",
+        "exchange rate": {
+            "answer": "The USD to INR exchange rate is hovering around 83.50 INR per US Dollar.",
             "results": [
                 {
-                    "title": "Transformer (deep learning) - Wikipedia",
-                    "url": "https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)",
+                    "title": "USD to INR Exchange Rate - XE.com",
+                    "url": "https://www.xe.com/currencyconverter/convert/?Amount=1&From=USD&To=INR",
                     "content": (
-                        "A transformer is a deep learning architecture based on the multi-head "
-                        "attention mechanism, proposed in the 2017 paper 'Attention Is All You Need'."
+                        "Convert 1 USD to INR with the XE Currency Converter. Live rates and historical charts."
+                    ),
+                },
+            ],
+        },
+        "iran": {
+            "answer": "Geopolitical tensions between the US and Iran continue to influence oil markets and regional security, with diplomatic efforts ongoing.",
+            "results": [
+                {
+                    "title": "US-Iran Geopolitical Updates - Reuters",
+                    "url": "https://www.reuters.com/world/middle-east/us-iran-relations",
+                    "content": (
+                        "Live coverage and investigative reporting on diplomatic relations, sanctions, "
+                        "and security events in the Middle East."
                     ),
                 },
             ],
@@ -97,14 +111,15 @@ class WebSearchTools(Toolkit):
         """Check if the Tavily API client can be initialized."""
         api_key = os.getenv("TAVILY_API_KEY")
         if not api_key:
-            print("[WARNING] Tavily API key not found -- using mock search fallback")
+            logger.warning("Tavily API key not found -- using mock search fallback")
             return False
         try:
             from tavily import TavilyClient
             self._client = TavilyClient(api_key=api_key)
+            logger.info("Tavily API client initialized successfully")
             return True
         except ImportError:
-            print("[WARNING] tavily-python not installed -- using mock search fallback")
+            logger.warning("tavily-python not installed -- using mock search fallback")
             return False
 
     def search_web(self, query: str, max_results: int = 3) -> str:
@@ -119,6 +134,7 @@ class WebSearchTools(Toolkit):
         Returns:
             JSON string with search results containing title, URL, and content.
         """
+        logger.info("search_web() called with query: %s", query)
         if self._tavily_available:
             return self._tavily_search(query, max_results)
         return self._mock_search(query, max_results)
@@ -141,6 +157,7 @@ class WebSearchTools(Toolkit):
                     "content": r.get("content", "")[:500],  # Truncate for context window
                 })
 
+            logger.info("Tavily search returned %d results for: %s", len(results), query)
             return json.dumps({
                 "query": query,
                 "answer": response.get("answer", ""),
@@ -149,7 +166,7 @@ class WebSearchTools(Toolkit):
                 "status": "success",
             })
         except Exception as e:
-            print(f"[WARNING] Tavily search failed: {e} -- falling back to mock")
+            logger.error("Tavily search failed for '%s': %s -- falling back to mock", query, e)
             return self._mock_search(query, max_results)
 
     def _mock_search(self, query: str, max_results: int) -> str:
