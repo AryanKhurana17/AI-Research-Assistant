@@ -267,6 +267,9 @@ class KnowledgeBase:
             List of result dicts with keys: content, page_num, source, score.
         """
         logger.info("search() called with query: '%s' (top_k=%d)", query, top_k)
+        if self.vector_store.count() == 0:
+            logger.info("Vector database is empty or missing. Auto-indexing PDF document...")
+            self.index(recreate=True)
         query_embedding = self.embedder.encode(query).tolist()
         results = self.vector_store.search(query_embedding, top_k)
         if results:

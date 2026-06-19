@@ -62,3 +62,160 @@
 2026-06-19 02:27:20 | research_assistant.eval             | INFO     | Evaluation complete: 10/10 passed, 0 errors
 2026-06-19 02:51:18 | research_assistant.knowledge        | INFO     | Initializing global KnowledgeBase instance (lazy load)
 2026-06-19 02:51:18 | research_assistant.tools.web_search | INFO     | Tavily API client initialized successfully
+2026-06-19 10:29:00 | research_assistant.knowledge        | INFO     | Initializing global KnowledgeBase instance (lazy load)
+2026-06-19 10:29:00 | research_assistant.tools.web_search | INFO     | Tavily API client initialized successfully
+2026-06-19 10:29:38 | research_assistant.tools.web_search | INFO     | search_web() called with query: latest USD to INR exchange rate
+2026-06-19 10:29:38 | research_assistant.tools.web_search | INFO     | search_web() called with query: current stock price of NVIDIA (NVDA) USD
+2026-06-19 10:29:40 | research_assistant.tools.web_search | INFO     | Tavily search returned 3 results for: latest USD to INR exchange rate
+2026-06-19 10:29:40 | research_assistant.tools.web_search | INFO     | Tavily search returned 3 results for: current stock price of NVIDIA (NVDA) USD
+2026-06-19 10:29:42 | research_assistant.tools.calculator | INFO     | calculate() called with: 210.69 * 94.36
+2026-06-19 10:29:42 | research_assistant.tools.calculator | INFO     | calculate() result: 210.69 * 94.36 = 19880.7084
+2026-06-19 10:30:40 | research_assistant.knowledge        | INFO     | Initializing global KnowledgeBase instance (lazy load)
+2026-06-19 10:30:40 | research_assistant.tools.web_search | INFO     | Tavily API client initialized successfully
+2026-06-19 10:30:40 | research_assistant.eval             | INFO     | Starting evaluation with 10 queries
+2026-06-19 10:30:40 | research_assistant.eval             | INFO     | Running eval query [rag_1]: 'What is cross-validation and why is it important in machine learning?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 10:30:47 | research_assistant.eval             | INFO     | Eval query [rag_1] completed successfully
+2026-06-19 10:30:47 | research_assistant.eval             | INFO     | Running eval query [rag_2]: 'Explain the difference between supervised and unsupervised learning' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 10:30:56 | research_assistant.knowledge        | INFO     | search() called with query: 'difference between supervised and unsupervised learning definitions labeled unlabeled data examples algorithms use cases' (top_k=5)
+2026-06-19 10:31:02 | research_assistant.knowledge        | INFO     | search() returned 5 results (top score: 0.6136, lowest: 0.4863)
+2026-06-19 10:31:03 | research_assistant.eval             | INFO     | Eval query [rag_2] completed successfully
+2026-06-19 10:31:03 | research_assistant.eval             | INFO     | Running eval query [rag_3]: 'How do random forests prevent overfitting compared to single decision trees?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 10:31:04 | research_assistant.eval             | INFO     | Eval query [rag_3] completed successfully
+2026-06-19 10:31:04 | research_assistant.eval             | INFO     | Running eval query [rag_4]: 'What preprocessing steps does scikit-learn provide?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 10:31:06 | research_assistant.eval             | INFO     | Eval query [rag_4] completed successfully
+2026-06-19 10:31:06 | research_assistant.eval             | INFO     | Running eval query [tool_1]: 'What is 127 * 53 + 89?' (expected: General Agent -> calculator)
+2026-06-19 10:31:06 | research_assistant.eval             | INFO     | Eval query [tool_1] completed successfully
+2026-06-19 10:31:06 | research_assistant.eval             | INFO     | Running eval query [tool_2]: 'Convert 98.6 degrees Fahrenheit to Celsius' (expected: General Agent -> calculator)
+2026-06-19 10:31:06 | research_assistant.eval             | INFO     | Eval query [tool_2] completed successfully
+2026-06-19 10:31:06 | research_assistant.eval             | INFO     | Running eval query [tool_3]: 'Search the web for the latest developments in large language models' (expected: General Agent -> web_search)
+2026-06-19 10:31:07 | research_assistant.eval             | INFO     | Eval query [tool_3] completed successfully
+2026-06-19 10:31:07 | research_assistant.eval             | INFO     | Running eval query [direct_1]: 'What is the capital of Japan?' (expected: General Agent -> None)
+2026-06-19 10:31:15 | research_assistant.eval             | INFO     | Eval query [direct_1] completed successfully
+2026-06-19 10:31:15 | research_assistant.eval             | INFO     | Running eval query [edge_1]: 'Calculate the square root of the number of features in a typical iris dataset' (expected: General Agent -> calculator)
+2026-06-19 10:31:28 | research_assistant.eval             | INFO     | Eval query [edge_1] completed successfully
+2026-06-19 10:31:28 | research_assistant.eval             | INFO     | Running eval query [edge_2]: 'What is the meaning of life?' (expected: General Agent -> None)
+2026-06-19 10:31:30 | research_assistant.eval             | INFO     | Eval query [edge_2] completed successfully
+2026-06-19 10:31:30 | research_assistant.eval             | INFO     | Evaluation complete: 10/10 passed, 0 errors
+2026-06-19 10:57:17 | research_assistant.knowledge        | INFO     | Initializing global KnowledgeBase instance (lazy load)
+2026-06-19 10:57:17 | research_assistant.tools.web_search | INFO     | Tavily API client initialized successfully
+2026-06-19 10:57:17 | research_assistant.eval             | INFO     | Starting evaluation with 10 queries
+2026-06-19 10:57:17 | research_assistant.eval             | INFO     | Running eval query [rag_1]: 'What is cross-validation and why is it important in machine learning?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 10:57:25 | research_assistant.knowledge        | INFO     | search() called with query: 'cross-validation k-fold overfitting model performance estimate' (top_k=5)
+2026-06-19 10:57:32 | research_assistant.knowledge        | INFO     | search() returned 5 results (top score: 0.6250, lowest: 0.5564)
+2026-06-19 10:58:13 | research_assistant.eval             | INFO     | Eval query [rag_1] completed successfully
+2026-06-19 10:58:13 | research_assistant.eval             | INFO     | Running eval query [rag_2]: 'Explain the difference between supervised and unsupervised learning' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 10:58:17 | research_assistant.eval             | INFO     | Eval query [rag_2] completed successfully
+2026-06-19 10:58:17 | research_assistant.eval             | INFO     | Running eval query [rag_3]: 'How do random forests prevent overfitting compared to single decision trees?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 10:58:24 | research_assistant.knowledge        | INFO     | search() called with query: 'how random forests prevent overfitting compared to decision trees bagging feature randomness law of large numbers variance' (top_k=5)
+2026-06-19 10:58:24 | research_assistant.knowledge        | INFO     | search() returned 5 results (top score: 0.6924, lowest: 0.5870)
+2026-06-19 10:59:02 | research_assistant.eval             | INFO     | Eval query [rag_3] completed successfully
+2026-06-19 10:59:02 | research_assistant.eval             | INFO     | Running eval query [rag_4]: 'What preprocessing steps does scikit-learn provide?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 10:59:10 | research_assistant.knowledge        | INFO     | search() called with query: 'scikit-learn preprocessing steps tools scaling encoding normalization sklearn.preprocessing' (top_k=5)
+2026-06-19 10:59:10 | research_assistant.knowledge        | INFO     | search() returned 5 results (top score: 0.6542, lowest: 0.5434)
+2026-06-19 10:59:39 | research_assistant.eval             | INFO     | Eval query [rag_4] completed successfully
+2026-06-19 10:59:39 | research_assistant.eval             | INFO     | Running eval query [tool_1]: 'What is 127 * 53 + 89?' (expected: General Agent -> calculator)
+2026-06-19 10:59:46 | research_assistant.tools.calculator | INFO     | calculate() called with: 127 * 53 + 89
+2026-06-19 10:59:46 | research_assistant.tools.calculator | INFO     | calculate() result: 127 * 53 + 89 = 6820
+2026-06-19 10:59:53 | research_assistant.eval             | INFO     | Eval query [tool_1] completed successfully
+2026-06-19 10:59:53 | research_assistant.eval             | INFO     | Running eval query [tool_2]: 'Convert 98.6 degrees Fahrenheit to Celsius' (expected: General Agent -> calculator)
+2026-06-19 10:59:59 | research_assistant.tools.calculator | INFO     | unit_convert() called: 98.6 fahrenheit -> celsius
+2026-06-19 10:59:59 | research_assistant.tools.calculator | INFO     | unit_convert() result: 98.6 fahrenheit = 37.0 celsius
+2026-06-19 11:00:06 | research_assistant.eval             | INFO     | Eval query [tool_2] completed successfully
+2026-06-19 11:00:06 | research_assistant.eval             | INFO     | Running eval query [tool_3]: 'Search the web for the latest developments in large language models' (expected: General Agent -> web_search)
+2026-06-19 11:00:09 | research_assistant.eval             | INFO     | Eval query [tool_3] completed successfully
+2026-06-19 11:00:09 | research_assistant.eval             | INFO     | Running eval query [direct_1]: 'What is the capital of Japan?' (expected: General Agent -> None)
+2026-06-19 11:00:12 | research_assistant.eval             | INFO     | Eval query [direct_1] completed successfully
+2026-06-19 11:00:12 | research_assistant.eval             | INFO     | Running eval query [edge_1]: 'Calculate the square root of the number of features in a typical iris dataset' (expected: General Agent -> calculator)
+2026-06-19 11:00:15 | research_assistant.eval             | INFO     | Eval query [edge_1] completed successfully
+2026-06-19 11:00:15 | research_assistant.eval             | INFO     | Running eval query [edge_2]: 'What is the meaning of life?' (expected: General Agent -> None)
+2026-06-19 11:00:17 | research_assistant.eval             | INFO     | Eval query [edge_2] completed successfully
+2026-06-19 11:03:37 | research_assistant.knowledge        | INFO     | Initializing global KnowledgeBase instance (lazy load)
+2026-06-19 11:03:37 | research_assistant.tools.web_search | WARNING  | Tavily API key not found -- using mock search fallback
+2026-06-19 11:03:37 | research_assistant.eval             | INFO     | Starting evaluation with 10 queries
+2026-06-19 11:03:37 | research_assistant.eval             | INFO     | Running eval query [rag_1]: 'What is cross-validation and why is it important in machine learning?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 11:03:40 | research_assistant.knowledge        | INFO     | search() called with query: 'cross-validation explanation benefits' (top_k=5)
+2026-06-19 11:03:46 | research_assistant.knowledge        | WARNING  | search() returned no results for: 'cross-validation explanation benefits'
+2026-06-19 11:03:52 | research_assistant.eval             | INFO     | Eval query [rag_1] completed successfully
+2026-06-19 11:03:52 | research_assistant.eval             | INFO     | Running eval query [rag_2]: 'Explain the difference between supervised and unsupervised learning' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 11:03:54 | research_assistant.knowledge        | INFO     | search() called with query: 'difference between supervised and unsupervised learning definitions and examples' (top_k=5)
+2026-06-19 11:03:54 | research_assistant.knowledge        | WARNING  | search() returned no results for: 'difference between supervised and unsupervised learning definitions and examples'
+2026-06-19 11:04:04 | research_assistant.eval             | INFO     | Eval query [rag_2] completed successfully
+2026-06-19 11:04:04 | research_assistant.eval             | INFO     | Running eval query [rag_3]: 'How do random forests prevent overfitting compared to single decision trees?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 11:04:06 | research_assistant.knowledge        | INFO     | search() called with query: 'how do random forests prevent overfitting compared to a single decision tree bagging feature randomness' (top_k=5)
+2026-06-19 11:04:06 | research_assistant.knowledge        | WARNING  | search() returned no results for: 'how do random forests prevent overfitting compared to a single decision tree bagging feature randomness'
+2026-06-19 11:04:17 | research_assistant.eval             | INFO     | Eval query [rag_3] completed successfully
+2026-06-19 11:04:17 | research_assistant.eval             | INFO     | Running eval query [rag_4]: 'What preprocessing steps does scikit-learn provide?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 11:04:19 | research_assistant.knowledge        | INFO     | search() called with query: 'scikit-learn data preprocessing techniques scaling encoding normalization sklearn.preprocessing' (top_k=5)
+2026-06-19 11:04:19 | research_assistant.knowledge        | WARNING  | search() returned no results for: 'scikit-learn data preprocessing techniques scaling encoding normalization sklearn.preprocessing'
+2026-06-19 11:04:22 | research_assistant.tools.web_search | INFO     | search_web() called with query: data preprocessing techniques in scikit-learn sklearn.preprocessing overview scaling encoding normalization missing values
+2026-06-19 11:04:31 | research_assistant.eval             | INFO     | Eval query [rag_4] completed successfully
+2026-06-19 11:04:31 | research_assistant.eval             | INFO     | Running eval query [tool_1]: 'What is 127 * 53 + 89?' (expected: General Agent -> calculator)
+2026-06-19 11:04:33 | research_assistant.tools.calculator | INFO     | calculate() called with: 127 * 53 + 89
+2026-06-19 11:04:33 | research_assistant.tools.calculator | INFO     | calculate() result: 127 * 53 + 89 = 6820
+2026-06-19 11:04:37 | research_assistant.eval             | INFO     | Eval query [tool_1] completed successfully
+2026-06-19 11:04:37 | research_assistant.eval             | INFO     | Running eval query [tool_2]: 'Convert 98.6 degrees Fahrenheit to Celsius' (expected: General Agent -> calculator)
+2026-06-19 11:04:39 | research_assistant.tools.calculator | INFO     | unit_convert() called: 98.6 fahrenheit -> celsius
+2026-06-19 11:04:39 | research_assistant.tools.calculator | INFO     | unit_convert() result: 98.6 fahrenheit = 37.0 celsius
+2026-06-19 11:04:43 | research_assistant.eval             | INFO     | Eval query [tool_2] completed successfully
+2026-06-19 11:04:43 | research_assistant.eval             | INFO     | Running eval query [tool_3]: 'Search the web for the latest developments in large language models' (expected: General Agent -> web_search)
+2026-06-19 11:04:45 | research_assistant.tools.web_search | INFO     | search_web() called with query: latest significant developments in large language models recent news 2024 2025
+2026-06-19 11:04:52 | research_assistant.eval             | INFO     | Eval query [tool_3] completed successfully
+2026-06-19 11:04:52 | research_assistant.eval             | INFO     | Running eval query [direct_1]: 'What is the capital of Japan?' (expected: General Agent -> None)
+2026-06-19 11:04:57 | research_assistant.eval             | INFO     | Eval query [direct_1] completed successfully
+2026-06-19 11:04:57 | research_assistant.eval             | INFO     | Running eval query [edge_1]: 'Calculate the square root of the number of features in a typical iris dataset' (expected: General Agent -> calculator)
+2026-06-19 11:04:59 | research_assistant.tools.web_search | INFO     | search_web() called with query: number of features in the standard Iris dataset
+2026-06-19 11:05:00 | research_assistant.tools.calculator | INFO     | calculate() called with: sqrt(4)
+2026-06-19 11:05:00 | research_assistant.tools.calculator | INFO     | calculate() result: sqrt(4) = 2
+2026-06-19 11:05:04 | research_assistant.eval             | INFO     | Eval query [edge_1] completed successfully
+2026-06-19 11:05:04 | research_assistant.eval             | INFO     | Running eval query [edge_2]: 'What is the meaning of life?' (expected: General Agent -> None)
+2026-06-19 11:05:16 | research_assistant.eval             | INFO     | Eval query [edge_2] completed successfully
+2026-06-19 11:05:16 | research_assistant.eval             | INFO     | Evaluation complete: 10/10 passed, 0 errors
+2026-06-19 11:06:16 | research_assistant.knowledge        | INFO     | Initializing global KnowledgeBase instance (lazy load)
+2026-06-19 11:06:16 | research_assistant.tools.web_search | WARNING  | Tavily API key not found -- using mock search fallback
+2026-06-19 11:06:16 | research_assistant.eval             | INFO     | Starting evaluation with 10 queries
+2026-06-19 11:06:16 | research_assistant.eval             | INFO     | Running eval query [rag_1]: 'What is cross-validation and why is it important in machine learning?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 11:06:19 | research_assistant.knowledge        | INFO     | search() called with query: 'what is cross-validation and why is it important' (top_k=5)
+2026-06-19 11:06:19 | research_assistant.knowledge        | INFO     | Vector database is empty or missing. Auto-indexing PDF document...
+2026-06-19 11:06:19 | research_assistant.knowledge        | INFO     | Reading PDF from /Users/aryankhurana/Desktop/Delphi Project/intro-to-ml.pdf
+2026-06-19 11:06:20 | research_assistant.knowledge        | INFO     | Created 1031 chunks (size=1000, overlap=200)
+2026-06-19 11:06:20 | research_assistant.knowledge        | INFO     | Generating embeddings...
+2026-06-19 11:06:31 | research_assistant.knowledge        | INFO     | Storing in DuckDB...
+2026-06-19 11:06:46 | research_assistant.knowledge        | INFO     | Indexed 1031 chunks into /Users/aryankhurana/Desktop/Delphi Project/data/vectors.duckdb
+2026-06-19 11:06:46 | research_assistant.knowledge        | INFO     | search() returned 5 results (top score: 0.6716, lowest: 0.4802)
+2026-06-19 11:06:54 | research_assistant.eval             | INFO     | Eval query [rag_1] completed successfully
+2026-06-19 11:06:54 | research_assistant.eval             | INFO     | Running eval query [rag_2]: 'Explain the difference between supervised and unsupervised learning' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 11:06:56 | research_assistant.knowledge        | INFO     | search() called with query: 'difference between supervised and unsupervised learning definitions data requirements examples' (top_k=5)
+2026-06-19 11:06:57 | research_assistant.knowledge        | INFO     | search() returned 5 results (top score: 0.5766, lowest: 0.4509)
+2026-06-19 11:07:03 | research_assistant.eval             | INFO     | Eval query [rag_2] completed successfully
+2026-06-19 11:07:03 | research_assistant.eval             | INFO     | Running eval query [rag_3]: 'How do random forests prevent overfitting compared to single decision trees?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 11:07:06 | research_assistant.knowledge        | INFO     | search() called with query: 'how do random forests prevent overfitting compared to single decision trees bagging feature randomness' (top_k=5)
+2026-06-19 11:07:06 | research_assistant.knowledge        | INFO     | search() returned 5 results (top score: 0.7289, lowest: 0.6006)
+2026-06-19 11:07:13 | research_assistant.eval             | INFO     | Eval query [rag_3] completed successfully
+2026-06-19 11:07:13 | research_assistant.eval             | INFO     | Running eval query [rag_4]: 'What preprocessing steps does scikit-learn provide?' (expected: Retriever Agent -> knowledge_search)
+2026-06-19 11:07:15 | research_assistant.knowledge        | INFO     | search() called with query: 'scikit-learn data preprocessing scaling normalization encoding categorical variables missing values PolynomialFeatures' (top_k=5)
+2026-06-19 11:07:15 | research_assistant.knowledge        | INFO     | search() returned 5 results (top score: 0.5786, lowest: 0.5103)
+2026-06-19 11:07:24 | research_assistant.eval             | INFO     | Eval query [rag_4] completed successfully
+2026-06-19 11:07:24 | research_assistant.eval             | INFO     | Running eval query [tool_1]: 'What is 127 * 53 + 89?' (expected: General Agent -> calculator)
+2026-06-19 11:07:26 | research_assistant.tools.calculator | INFO     | calculate() called with: 127 * 53 + 89
+2026-06-19 11:07:26 | research_assistant.tools.calculator | INFO     | calculate() result: 127 * 53 + 89 = 6820
+2026-06-19 11:07:30 | research_assistant.eval             | INFO     | Eval query [tool_1] completed successfully
+2026-06-19 11:07:30 | research_assistant.eval             | INFO     | Running eval query [tool_2]: 'Convert 98.6 degrees Fahrenheit to Celsius' (expected: General Agent -> calculator)
+2026-06-19 11:07:31 | research_assistant.tools.calculator | INFO     | unit_convert() called: 98.6 fahrenheit -> celsius
+2026-06-19 11:07:31 | research_assistant.tools.calculator | INFO     | unit_convert() result: 98.6 fahrenheit = 37.0 celsius
+2026-06-19 11:07:36 | research_assistant.eval             | INFO     | Eval query [tool_2] completed successfully
+2026-06-19 11:07:36 | research_assistant.eval             | INFO     | Running eval query [tool_3]: 'Search the web for the latest developments in large language models' (expected: General Agent -> web_search)
+2026-06-19 11:07:38 | research_assistant.tools.web_search | INFO     | search_web() called with query: significant developments in large language models recent months 2024 2025
+2026-06-19 11:07:46 | research_assistant.eval             | INFO     | Eval query [tool_3] completed successfully
+2026-06-19 11:07:46 | research_assistant.eval             | INFO     | Running eval query [direct_1]: 'What is the capital of Japan?' (expected: General Agent -> None)
+2026-06-19 11:07:51 | research_assistant.eval             | INFO     | Eval query [direct_1] completed successfully
+2026-06-19 11:07:51 | research_assistant.eval             | INFO     | Running eval query [edge_1]: 'Calculate the square root of the number of features in a typical iris dataset' (expected: General Agent -> calculator)
+2026-06-19 11:07:54 | research_assistant.tools.web_search | INFO     | search_web() called with query: number of features in the standard Iris dataset
+2026-06-19 11:07:54 | research_assistant.tools.calculator | INFO     | calculate() called with: sqrt(4)
+2026-06-19 11:07:54 | research_assistant.tools.calculator | INFO     | calculate() result: sqrt(4) = 2
+2026-06-19 11:07:58 | research_assistant.eval             | INFO     | Eval query [edge_1] completed successfully
+2026-06-19 11:07:58 | research_assistant.eval             | INFO     | Running eval query [edge_2]: 'What is the meaning of life?' (expected: General Agent -> None)
+2026-06-19 11:08:09 | research_assistant.eval             | INFO     | Eval query [edge_2] completed successfully
+2026-06-19 11:08:09 | research_assistant.eval             | INFO     | Evaluation complete: 10/10 passed, 0 errors
+2026-06-19 11:10:23 | research_assistant.knowledge        | INFO     | Initializing global KnowledgeBase instance (lazy load)
+2026-06-19 11:10:23 | research_assistant.tools.web_search | WARNING  | Tavily API key not found -- using mock search fallback
+2026-06-19 11:10:43 | research_assistant.tools.web_search | INFO     | search_web() called with query: latest developments and trends in large language models mid-2024 summary
