@@ -48,9 +48,6 @@ graph TD
    pip install -r requirements.txt
    ```
 3. **Configure Environment Variables**:
-   ```bash
-   cp .env.example .env
-   ```
    Edit `.env` and fill in `OPENROUTER_API_KEY` (and `TAVILY_API_KEY` if available).
 
 ### Data Indexing
