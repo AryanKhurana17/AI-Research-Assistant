@@ -78,6 +78,7 @@ class DuckDBVectorStore:
         Returns:
             Number of rows inserted.
         """
+        self.init_table()
         conn = self._connect()
         for chunk, emb in zip(chunks, embeddings):
             emb_list = emb.tolist() if hasattr(emb, "tolist") else emb

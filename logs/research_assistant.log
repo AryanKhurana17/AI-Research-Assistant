@@ -219,3 +219,5 @@
 2026-06-19 11:10:23 | research_assistant.knowledge        | INFO     | Initializing global KnowledgeBase instance (lazy load)
 2026-06-19 11:10:23 | research_assistant.tools.web_search | WARNING  | Tavily API key not found -- using mock search fallback
 2026-06-19 11:10:43 | research_assistant.tools.web_search | INFO     | search_web() called with query: latest developments and trends in large language models mid-2024 summary
+2026-06-19 11:16:34 | research_assistant.knowledge        | INFO     | Initializing global KnowledgeBase instance (lazy load)
+2026-06-19 11:16:34 | research_assistant.tools.web_search | INFO     | Tavily API client initialized successfully
