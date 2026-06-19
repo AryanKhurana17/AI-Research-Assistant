@@ -71,7 +71,6 @@ Thumbs.db
 
 # Project-specific files from existing .gitignore
 GenAI_Intern_-_Case_Study.pdf
-intro-to-ml.pdf
 interview/
 verify_retriever.py
 plan/
